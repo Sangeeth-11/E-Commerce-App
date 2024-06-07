@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit{
   ngOnInit() {
     this.api.getAllProducts().subscribe({
       next:(res:any)=>{
-        this.getData(res)
+        this.products=res
       },
       error:(err:any)=>{
         console.log(err);
@@ -20,7 +20,5 @@ export class HomeComponent implements OnInit{
       }
     })
   }
-  getData(data:any){
-    this.products=data
-  }
+  
 }
