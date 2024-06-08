@@ -13,7 +13,15 @@
         </a>
         <a routerLink="cart" class="btn btn-outline-dark  me-3">
             <i class="fa-solid fa-cart-shopping" ></i> Cart</a>
-        <a routerLink="log" class="btn btn-outline-primary btn-light me-3">
+            <span>
+
+              <span class="h5 px-2">
+                <i class="fa-solid fa-user"></i>
+                {{userName | uppercase}}
+              </span>
+              <a href="" class="btn btn-danger">Logout</a>
+            </span>
+        <a routerLink="log" class="btn btn-outline-primary btn-light me-3" *ngIf="!logStatus">
             <i class="fa-solid fa-user"></i> Login</a>
       </div>
     </div>

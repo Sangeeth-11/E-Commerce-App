@@ -14,4 +14,10 @@ export class ApiService {
   getProduct(id:any){
     return this.http.get(`${this.base_url}/get-product/${id}`)
   }
+  regUser(data:any){
+    return this.http.post(`${this.base_url}/register`,data)
+  }
+  logUser(data:any){
+    return this.http.post(`${this.base_url}/login`,data)
+  }
 }

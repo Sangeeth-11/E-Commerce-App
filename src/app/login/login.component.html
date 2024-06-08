@@ -5,11 +5,17 @@
         </div>
         <div class="col-6 justify-content-center d-flex align-items-center flex-column ps-5">
             <h4>Login</h4>
-            <form>
-                <input type="email" name="em" id="" class="form-control mb-3" placeholder="Enter Your Email">
-                <input type="password" name="ps" id="" class="form-control mb-3" placeholder="Enter Your password">
+            <form [formGroup]="logForm" (ngSubmit)="handleSubmit()">
+                <input type="email" formControlName="email" name="em" id="" class="form-control mb-3" placeholder="Enter Your Email">
+                <div class="text-danger" *ngIf="logForm.get('email')?.errors && logForm.get('email')?.touched">
+                    Invalid email
+                </div>
+                <input type="password" formControlName="password" name="ps" id="" class="form-control mb-3" placeholder="Enter Your password">
+                <div class="text-danger" *ngIf="logForm.get('password')?.errors && logForm.get('password')?.touched">
+                    Invalid password
+                </div>
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-success" type="submit">Login</button>
+                    <button class="btn btn-success" type="submit" [disabled]="logForm.invalid">Login</button>
                     <a routerLink="/reg">New User?</a>
                 </div>
             </form>
