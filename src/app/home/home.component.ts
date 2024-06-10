@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../serices/api.service';
 import { OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,7 +9,7 @@ import { OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit{
   products:any=[]
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService,private toastr:ToastrService){}
   ngOnInit() {
     this.api.getAllProducts().subscribe({
       next:(res:any)=>{
@@ -17,6 +18,18 @@ export class HomeComponent implements OnInit{
       error:(err:any)=>{
         console.log(err);
         
+      }
+    })
+  }
+
+  addWishList(data:any){
+    this.api.addToWishList(data).subscribe({
+      next:(res:any)=>{
+        this.toastr.success("Added to Wishlist")
+        this.api.getWishListCount()
+      },
+      error:(err:any)=>{
+        this.toastr.error(err.error)
       }
     })
   }

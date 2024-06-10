@@ -1,22 +1,33 @@
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { ApiService } from '../serices/api.service';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   logStatus:any = false
   userName:any =''
-  constructor(){
+  wishlistcnt:any=0
+
+  constructor(private api:ApiService){}
+  ngOnInit() {
+    
     if (sessionStorage.getItem('user')) {
-      this.logStatus=true
       const us:any= sessionStorage.getItem('user') 
       this.userName = JSON.parse(us)?.username
+      this.logStatus=true
+      this.api.wishListCountBS.subscribe((res:any)=>{
+        this.wishlistcnt = res
+      })
     } else {
       this.logStatus=false
       this.userName =""
     }
+  
   }
 
 }

@@ -8,14 +8,14 @@
             <input type="text" class="form-control" name="" placeholder="Search">
         </div>
         <a routerLink="wish" class="btn btn-outline-dark me-3">
-            <i class="fa-solid fa-heart" style="color: red;"></i> WishList
+            <i class="fa-solid fa-heart" style="color: red;"></i> WishList&nbsp;<span class="badge bg-dark">{{wishlistcnt}}</span>
            
         </a>
         <a routerLink="cart" class="btn btn-outline-dark  me-3">
             <i class="fa-solid fa-cart-shopping" ></i> Cart</a>
-            <span>
+            <span *ngIf="logStatus">
 
-              <span class="h5 px-2">
+              <span class="h5 px-2" >
                 <i class="fa-solid fa-user"></i>
                 {{userName | uppercase}}
               </span>

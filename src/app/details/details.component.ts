@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../serices/api.service';
 import { OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details',
@@ -11,7 +12,7 @@ import { OnInit } from '@angular/core';
 export class DetailsComponent implements OnInit{
   pid:any=""
   product:any={}
-  constructor(private ar:ActivatedRoute,private api:ApiService){
+  constructor(private ar:ActivatedRoute,private api:ApiService,private toastr:ToastrService){
     this.ar.params.subscribe((res:any)=>{
       this.pid=res.id
     })
@@ -25,6 +26,16 @@ export class DetailsComponent implements OnInit{
       error:(err:any)=>{
         console.log(err);
         
+      }
+    })
+  }
+  addWishList(data:any){
+    this.api.addToWishList(data).subscribe({
+      next:(res:any)=>{
+        this.toastr.success("Added to Wishlist")
+      },
+      error:(err:any)=>{
+        this.toastr.error(err.error)
       }
     })
   }
