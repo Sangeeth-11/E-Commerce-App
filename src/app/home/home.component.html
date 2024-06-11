@@ -1,17 +1,18 @@
-<header class="py-5">
+<app-header></app-header>
+<header class="py-2">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://e0.pxfuel.com/wallpapers/606/84/desktop-wallpaper-ecommerce-website-design-company-noida-e-commerce-banner-design-e-commerce.jpg"
-                    height="400px" class="d-block w-100" alt="...">
+                <img src="https://assets.materialup.com/uploads/853fd079-69a0-4955-a8cf-af03ad615f88/preview.jpg"
+                    height="500px" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
                 <img src="https://cdn.dribbble.com/userupload/8776765/file/original-34316c4868f626bbd2a4c6fb47ccb22c.png?resize=400x0"
-                    height="400px" class="d-block w-100" alt="...">
+                    height="500px" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/004/707/502/small/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-vector.jpg"
-                    height="400px" class="d-block w-100" alt="...">
+                <img src="https://graphicsfamily.com/wp-content/uploads/edd/2023/04/Black-Friday-Ecommerce-Website-Banner-Design-scaled.jpg"
+                    height="500px" class="d-block w-100" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -29,7 +30,7 @@
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" *ngIf="products.length>0; else prod">
             <div class="col mb-5" *ngFor="let i of products">
                 <div class="card h-100 border border-0">
                     <!-- Product image-->
@@ -46,7 +47,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <button class="btn btn-outline-dark flex-shrink-0 mb-2 w-100" type="button">
+                        <button class="btn btn-outline-dark flex-shrink-0 mb-2 w-100" type="button" (click)="addCart(i)">
                             <i class="fa-solid fa-cart-plus me-1"></i>
                             Add to cart
                         </button>
@@ -61,5 +62,6 @@
 
 
         </div>
+        <ng-template #prod>no products</ng-template>
     </div>
 </section>

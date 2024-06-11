@@ -26,17 +26,41 @@ export class WishlistComponent implements OnInit {
     })
   }
   removeFromWishList(id:any){
-    this.api.removeFromWishList(id).subscribe({
-      next:(res:any)=>{
+    if (sessionStorage.getItem('token')) {
       
+      this.api.removeFromWishList(id).subscribe({
+        next:(res:any)=>{
         
-        this.toastr.success("product removed from wishlist")
-        this.ngOnInit()
-        this.api.getWishListCount()
-      },
-      error:(err:any)=>{
-        this.toastr.error(err.error)
-      }
-    })
+          
+          this.toastr.success("product removed from wishlist")
+          this.ngOnInit()
+          this.api.getWishListCount()
+        },
+        error:(err:any)=>{
+          this.toastr.error(err.error)
+        }
+      })
+    } else {
+      this.toastr.warning("please login first")
+    }
+  }
+  addCart(data:any){
+    const {id,title,category,image,price}=data
+    const quantity =1
+    if (sessionStorage.getItem('token')) {
+      
+      this.api.addCart({id,title,category,image,price,quantity}).subscribe({
+        next:(res:any)=>{
+          this.toastr.success("Added to Wishlist")
+          this.api.getWishListCount()
+          this.api.cartCount()
+        },
+        error:(err:any)=>{
+          this.toastr.error(err.error)
+        }
+      })
+    } else {
+      this.toastr.error("please login first")
+    }
   }
 }

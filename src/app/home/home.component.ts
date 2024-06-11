@@ -23,15 +23,39 @@ export class HomeComponent implements OnInit{
   }
 
   addWishList(data:any){
-    this.api.addToWishList(data).subscribe({
-      next:(res:any)=>{
-        this.toastr.success("Added to Wishlist")
-        this.api.getWishListCount()
-      },
-      error:(err:any)=>{
-        this.toastr.error(err.error)
-      }
-    })
+    if (sessionStorage.getItem('token')) {
+      
+      this.api.addToWishList(data).subscribe({
+        next:(res:any)=>{
+          this.toastr.success("Added to Wishlist")
+          this.api.getWishListCount()
+        },
+        error:(err:any)=>{
+          this.toastr.error(err.error)
+        }
+      })
+    } else {
+      this.toastr.error("please login first")
+    }
+  }
+  addCart(data:any){
+    const {id,title,category,image,price}=data
+    const quantity =1
+    if (sessionStorage.getItem('token')) {
+      
+      this.api.addCart({id,title,category,image,price,quantity}).subscribe({
+        next:(res:any)=>{
+          this.toastr.success("Added to Wishlist")
+          this.api.getWishListCount()
+          this.api.cartCount()
+        },
+        error:(err:any)=>{
+          this.toastr.error(err.error)
+        }
+      })
+    } else {
+      this.toastr.error("please login first")
+    }
   }
   
 }

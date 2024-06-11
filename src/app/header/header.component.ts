@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit{
   logStatus:any = false
   userName:any =''
   wishlistcnt:any=0
+  cartcnt:any=0
 
   constructor(private api:ApiService){}
   ngOnInit() {
@@ -23,7 +24,11 @@ export class HeaderComponent implements OnInit{
       this.api.wishListCountBS.subscribe((res:any)=>{
         this.wishlistcnt = res
       })
-    } else {
+      this.api.cartCountBS.subscribe((res:any)=>{
+        this.cartcnt = res
+      })
+    } 
+    else {
       this.logStatus=false
       this.userName =""
     }

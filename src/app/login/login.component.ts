@@ -26,6 +26,7 @@ export class LoginComponent {
         this.toastr.success("Login successfull")
         this.logForm.reset()
         this.router.navigateByUrl('')
+        this.api.getWishListCount()
       },
       error:(err:any)=>{
         this.toastr.error(err.error)
