@@ -65,7 +65,16 @@ export class ApiService {
       
     })
   }
-  removeFromWishCart(id: any) {
+  removeFromCart(id: any) {
     return this.http.delete(`${this.base_url}/removeCart/${id}`, this.appendTokenToHeader())
+  }
+  incrementCart(id: any) {
+    return this.http.get(`${this.base_url}/cartInc/${id}`, this.appendTokenToHeader())
+  }
+  decrementCart(id: any) {
+    return this.http.get(`${this.base_url}/cartDec/${id}`, this.appendTokenToHeader())
+  }
+  emptyCart() {
+    return this.http.delete(`${this.base_url}/emptyCart`, this.appendTokenToHeader())
   }
 }

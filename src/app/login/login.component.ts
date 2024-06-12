@@ -27,6 +27,7 @@ export class LoginComponent {
         this.logForm.reset()
         this.router.navigateByUrl('')
         this.api.getWishListCount()
+        this.api.cartCount()
       },
       error:(err:any)=>{
         this.toastr.error(err.error)

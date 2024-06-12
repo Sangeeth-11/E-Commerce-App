@@ -7,11 +7,11 @@
         <div class="me-3">
             <input type="text" class="form-control" name="" placeholder="Search">
         </div>
-        <a routerLink="wish" class="btn btn-outline-dark me-3">
+        <a routerLink="/wish" class="btn btn-outline-dark me-3">
             <i class="fa-solid fa-heart" style="color: red;"></i> WishList&nbsp;<span class="badge bg-dark">{{wishlistcnt}}</span>
            
         </a>
-        <a routerLink="cart" class="btn btn-outline-dark  me-3">
+        <a routerLink="/cart" class="btn btn-outline-dark  me-3">
             <i class="fa-solid fa-cart-shopping" ></i> Cart&nbsp;<span class="badge bg-dark">{{cartcnt}}</span></a>
             <span *ngIf="logStatus">
 
@@ -21,7 +21,7 @@
               </span>
               <a href="" class="btn btn-danger">Logout</a>
             </span>
-        <a routerLink="log" class="btn btn-outline-primary btn-light me-3" *ngIf="!logStatus">
+        <a routerLink="/log" class="btn btn-outline-primary btn-light me-3" *ngIf="!logStatus">
             <i class="fa-solid fa-user"></i> Login</a>
       </div>
     </div>
