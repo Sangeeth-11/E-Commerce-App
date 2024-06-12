@@ -24,6 +24,8 @@ export class CartComponent implements OnInit {
         this.cart = res
         console.log(this.cart);
         this.getcartTotal()
+        this.couponStatus=false
+        this.couponuseStatus=false
 
       },
       error: (err: any) => {
@@ -41,6 +43,7 @@ export class CartComponent implements OnInit {
           this.toastr.success("product removed from cart")
           this.ngOnInit()
           this.api.cartCount()
+          
          
         },
         error: (err: any) => {
@@ -56,8 +59,7 @@ export class CartComponent implements OnInit {
     this.api.incrementCart(id).subscribe({
       next: (res: any) => {
         this.ngOnInit()
-        this.couponStatus=false
-        this.couponuseStatus=false
+       
 
       },
       error: (err: any) => {
@@ -73,8 +75,7 @@ export class CartComponent implements OnInit {
       next: (res: any) => {
         this.ngOnInit()
         this.api.cartCount()
-        this.couponStatus=false
-        this.couponuseStatus=false
+       
       },
       error: (err: any) => {
         console.log(err.error);
