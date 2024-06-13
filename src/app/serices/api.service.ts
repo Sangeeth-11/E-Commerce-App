@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ApiService {
   wishListCountBS = new BehaviorSubject(0)
   cartCountBS = new BehaviorSubject(0)
+  searchBS = new BehaviorSubject("")
   base_url: string = "http://localhost:3000"
   constructor(private http: HttpClient) {
     if (sessionStorage.getItem('token')) {
@@ -76,5 +77,8 @@ export class ApiService {
   }
   emptyCart() {
     return this.http.delete(`${this.base_url}/emptyCart`, this.appendTokenToHeader())
+  }
+  isLoggedIn(){
+    return !!sessionStorage.getItem('token')
   }
 }

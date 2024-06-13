@@ -1,1 +1,54 @@
-<p>checkout works!</p>
+<app-header></app-header>
+
+<div class="container mt-5" *ngIf="!checkStatus">
+    <h2 class="mb-4">Checkout</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <h4 class="mb-3">Billing Address</h4>
+            <form [formGroup]="checkForm" (ngSubmit)="proceedToPay()">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName" class="form-label">First name</label>
+                        <input type="text" formControlName="first" name="first" class="form-control" id="firstName" >
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Last name</label>
+                        <input type="text" formControlName="last" name="last"  class="form-control" id="lastName" >
+                    </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" formControlName="email" name="email"  class="form-control" id="email" >
+                    </div>
+                    <div class="col-12">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" formControlName="address" name="address"  class="form-control" id="address" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="number" formControlName="phone" name="phone"  class="form-control" id="phone" >
+                    </div>
+                
+                    <div class="col-md-6">
+                        <label for="zip" class="form-label">Zip</label>
+                        <input type="text" formControlName="pincode" name="pincode"  class="form-control" id="zip" >
+                    </div>
+                </div>
+                <button class="w-100 btn btn-primary btn-lg mt-3" type="submit" [disabled]="checkForm.invalid" >Continue to checkout</button>
+                <hr class="my-4">
+            </form>
+        </div>
+       
+    </div>
+</div>
+
+<div *ngIf="checkStatus">
+<p>checkout</p>
+<p>{{checkForm.value.first}}</p>
+<p>{{checkForm.value.email}}</p>
+<p>{{checkForm.value.address}}</p>
+<p>{{checkForm.value.pincode}}</p>
+<p>{{checkForm.value.phone}}</p>
+<p>Total Amount - {{total}}</p>
+
+<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div>

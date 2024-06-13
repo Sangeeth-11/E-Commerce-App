@@ -15,8 +15,9 @@ import { FooterComponent } from './footer/footer.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 import { ToastrModule } from 'ngx-toastr';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     WishlistComponent,
     CheckoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,NgxPayPalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

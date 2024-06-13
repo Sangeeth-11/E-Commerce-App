@@ -4,8 +4,9 @@
        <i class="fa-solid fa-store fa-xl"></i> Ekart
       </h1>
       <div class="d-flex">
-        <div class="me-3">
-            <input type="text" class="form-control" name="" placeholder="Search">
+        <div class="me-3 d-flex">
+            <input type="text" #search class="form-control" name="" placeholder="Search">
+            <button (click)="changeKey(search)" class="btn"><i class="fa-solid fa-search"></i></button>
         </div>
         <a routerLink="/wish" class="btn btn-outline-dark me-3">
             <i class="fa-solid fa-heart" style="color: red;"></i> WishList&nbsp;<span class="badge bg-dark">{{wishlistcnt}}</span>
@@ -19,7 +20,7 @@
                 <i class="fa-solid fa-user"></i>
                 {{userName | uppercase}}
               </span>
-              <a href="" class="btn btn-danger">Logout</a>
+              <button class="btn btn-danger" (click)="logout()">Logout</button>
             </span>
         <a routerLink="/log" class="btn btn-outline-primary btn-light me-3" *ngIf="!logStatus">
             <i class="fa-solid fa-user"></i> Login</a>

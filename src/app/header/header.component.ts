@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ApiService } from '../serices/api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit{
   wishlistcnt:any=0
   cartcnt:any=0
 
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService,private router:Router){}
   ngOnInit() {
     
     if (sessionStorage.getItem('user')) {
@@ -33,6 +34,19 @@ export class HeaderComponent implements OnInit{
       this.userName =""
     }
   
+  }
+
+  logout(){
+    this.userName=""
+    this.logStatus=false
+    this.wishlistcnt=''
+    this.cartcnt=''
+    sessionStorage.clear()
+    this.router.navigateByUrl('/log')
+
+  }
+  changeKey(search:any){
+    this.api.searchBS.next(search.value)
   }
 
 }
