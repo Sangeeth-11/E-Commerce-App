@@ -10,7 +10,8 @@ export class ApiService {
   wishListCountBS = new BehaviorSubject(0)
   cartCountBS = new BehaviorSubject(0)
   searchBS = new BehaviorSubject("")
-  base_url: string = "http://localhost:3000"
+  //base_url: string = "http://localhost:3000"
+base_url:string ="https://ekart-server-axo6.onrender.com"
   constructor(private http: HttpClient) {
     if (sessionStorage.getItem('token')) {
       this.getWishListCount()
